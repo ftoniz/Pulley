@@ -776,21 +776,10 @@ open class PulleyViewController: UIViewController, PulleyDrawerViewControllerDel
             }
         }
 
-        let safeAreaTopInset: CGFloat
-        let safeAreaBottomInset: CGFloat
+        let safeAreaTopInset = pulleySafeAreaInsets.top
+        let safeAreaBottomInset = pulleySafeAreaInsets.bottom
         let safeAreaLeftInset = pulleySafeAreaInsets.left
         let safeAreaRightInset = pulleySafeAreaInsets.right
-        
-        if #available(iOS 11.0, *)
-        {
-            safeAreaTopInset = self.view.safeAreaInsets.top
-            safeAreaBottomInset = self.view.safeAreaInsets.bottom
-        }
-        else
-        {
-            safeAreaTopInset = self.topLayoutGuide.length
-            safeAreaBottomInset = self.bottomLayoutGuide.length
-        }
         
         let displayModeForCurrentLayout: PulleyDisplayMode = displayMode != .automatic ? displayMode : ((self.view.bounds.width >= 600.0 || self.traitCollection.horizontalSizeClass == .regular) ? .panel : .drawer)
         
