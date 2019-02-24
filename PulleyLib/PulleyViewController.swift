@@ -474,8 +474,13 @@ open class PulleyViewController: UIViewController, PulleyDrawerViewControllerDel
     public var feedbackGenerator: Any?
     
     /// Access to the safe areas that Pulley is using for layout (provides compatibility for iOS < 11)
+    public var customSafeAreaInsets: UIEdgeInsets? = nil
     public var pulleySafeAreaInsets: UIEdgeInsets {
-        
+      
+        if customSafeAreaInsets != nil {
+          return customSafeAreaInsets!
+        }
+      
         var safeAreaBottomInset: CGFloat = 0
         var safeAreaLeftInset: CGFloat = 0
         var safeAreaRightInset: CGFloat = 0
@@ -587,7 +592,7 @@ open class PulleyViewController: UIViewController, PulleyDrawerViewControllerDel
             safeAreaTopInset = view.safeAreaInsets.top
             safeAreaBottomInset = view.safeAreaInsets.bottom
         }
-        
+      
         var height = self.view.bounds.height - safeAreaTopInset
         
         if currentDisplayMode == .panel {
